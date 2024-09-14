@@ -1,0 +1,88 @@
+/* General Body Styling */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  color: #333;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Scoreboard Styling */
+#human-score,
+#computer-score {
+  font-size: 1.5rem;
+  margin: 10px;
+  padding: 10px 20px;
+  border: 2px solid #444;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  width: 250px;
+  text-align: center;
+  font-weight: bold;
+}
+
+#result {
+  font-size: 1.8rem;
+  color: #333;
+  margin-top: 20px;
+}
+
+/* Button Styling */
+button {
+  font-size: 1.2rem;
+  padding: 15px 30px;
+  margin: 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Button Colors */
+#rockbtn {
+  background-color: #ff4757;
+  color: white;
+}
+
+#paperbtn {
+  background-color: #1e90ff;
+  color: white;
+}
+
+#scissorsbtn {
+  background-color: #2ed573;
+  color: white;
+}
+
+/* Hover Effect */
+button:hover:not(:disabled) {
+  background-color: #444;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Reset Button */
+#resetbtn {
+  background-color: #ffa502;
+  color: white;
+}
+
+#resetbtn:hover {
+  background-color: #e67e22;
+  transform: scale(1.05);
+}

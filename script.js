@@ -12,12 +12,8 @@ function getComputerChoice() {
   }
 }
 
-function getHumanChoice() {
-  let choice = prompt("Select Rock, Paper, or Scissors").toLowerCase();
-  return choice;
-}
-
-function playRound(humanChoice, computerChoice) {
+function playRound(humanChoice) {
+  let computerChoice = getComputerChoice();
   let result;
 
   if (humanChoice === "rock" && computerChoice === "scissors") {
@@ -42,30 +38,56 @@ function playRound(humanChoice, computerChoice) {
     result = "It's a tie";
   }
 
-  return result;
+  // Update the result display
+  document.getElementById("result").textContent = result;
+
+  // Debugging: Check if scores are updating
+  console.log("Human Score: " + humanScore);
+  console.log("Computer Score: " + computerScore);
+
+  // Update score display
+  document.getElementById("human-score").textContent =
+    "Human Score: " + humanScore;
+  document.getElementById("computer-score").textContent =
+    "Computer Score: " + computerScore;
+
+  // Check if someone has won
+  if (humanScore === 5) {
+    console.log("Human won!");
+    document.getElementById("result").textContent =
+      "Congratulations! You win the game!";
+    disableButtons(); // Disable buttons after the game ends
+  } else if (computerScore === 5) {
+    console.log("Computer won!");
+    document.getElementById("result").textContent =
+      "Computer wins the game. Better luck next time!";
+    disableButtons(); // Disable buttons after the game ends
+  }
 }
 
-function playGame(roundsRemaining) {
-  if (roundsRemaining === 0) {
-    console.log("Game over!");
-    console.log(
-      `Final Score -> Human: ${humanScore}, Computer: ${computerScore}`
-    );
-    return;
-  }
-
-  let humanChoice = getHumanChoice();
-  let computerChoice = getComputerChoice();
-
-  let result = playRound(humanChoice, computerChoice);
-  console.log(result);
-  console.log(`Your score: ${humanScore}, Computer score: ${computerScore}`);
-
-  if (result !== "It's a tie") {
-    playGame(roundsRemaining - 1);
-  } else {
-    playGame(roundsRemaining);
-  }
+function disableButtons() {
+  document.getElementById("rockbtn").disabled = true;
+  document.getElementById("paperbtn").disabled = true;
+  document.getElementById("scissorsbtn").disabled = true;
 }
 
-playGame(5);
+document.getElementById("rockbtn").addEventListener("click", function () {
+  playRound("rock");
+});
+document.getElementById("paperbtn").addEventListener("click", function () {
+  playRound("paper");
+});
+document.getElementById("scissorsbtn").addEventListener("click", function () {
+  playRound("scissors");
+});
+
+document.getElementById("resetbtn").addEventListener("click", function () {
+  humanScore = 0;
+  computerScore = 0;
+  document.getElementById("human-score").textContent = "Human Score: 0";
+  document.getElementById("computer-score").textContent = "Computer Score: 0";
+  document.getElementById("result").textContent = "";
+  document.getElementById("rockbtn").disabled = false;
+  document.getElementById("paperbtn").disabled = false;
+  document.getElementById("scissorsbtn").disabled = false;
+});
